@@ -1,5 +1,5 @@
-# datatable_shinymodal
-Sometimes there are too many rows in a data table to display on one page and scrolling is not the most user-friendly way to solve this. This examples provides a way to layer information into a lightbox modal pop-up which can be accessed by clicking a link in a data table. 
+# DataTable Overlay
+Sometimes there are too many rows in a data table to display on one page and scrolling is not the most user-friendly way to solve this. This examples provides a way to layer information into a overlay which can be accessed by clicking a link in a data table. 
 
 You can try out the app [here](https://shiny.epi-interactive.com/modal)
 
@@ -23,7 +23,7 @@ dat <- dat %>%
 
 ```
 
-Listen for the click and show a modal
+Listen for the click and show the overlay
 ``` r
 observeEvent(input$DTClick, {
       showModal(modalDialog(
