@@ -11,7 +11,9 @@ Add an an extra column for the data in your table and attach a Shiny event liste
 ``` r
 dat <- iris %>% mutate(More = paste0('<span><a href="javascript:void(0)" onmousedown="',
                                     'Shiny.onInputChange(\'DTClick\',[', 1:n(), ',Math.random()]);',
-                                    'event.preventDefault(); event.stopPropagation(); return false;"><font color="grey">&#9679;&#9679;&#9679;</font></a></span>')
+                                    'event.preventDefault(); event.stopPropagation(); return false;">
+                                    <font color="grey">&#9679;&#9679;&#9679;</font>
+                                    </a></span>')
                                     )
                       )
 
