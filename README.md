@@ -9,17 +9,11 @@ You can try out the app [here](https://shiny.epi-interactive.com/datatable_overl
 Add an an extra column for the data in your table and attach a Shiny event listener to it to return its index
 
 ``` r
-dat <- dat %>%
-  mutate(More = paste0('
-  <span style="float:right;">
-    <a href="javascript:void(0)" onmousedown="',
-             'Shiny.onInputChange(\'DTClick\',[', GID, ',Math.random()]);',
-             ' event.preventDefault(); event.stopPropagation(); return false;">
-                <font color="grey">&#9679;&#9679;&#9679;&nbsp;&nbsp;</font>
-    </a>
-  </span>')
-)
-    
+dat <- iris %>% mutate(More = paste0('<span><a href="javascript:void(0)" onmousedown="',
+                                    'Shiny.onInputChange(\'DTClick\',[', 1:n(), ',Math.random()]);',
+                                    'event.preventDefault(); event.stopPropagation(); return false;"><font color="grey">&#9679;&#9679;&#9679;</font></a></span>')
+                                    )
+                      )
 
 ```
 
@@ -27,9 +21,9 @@ Listen for the click and show the overlay
 ``` r
 observeEvent(input$DTClick, {
       showModal(modalDialog(
-        title = "Sample message",
-        div(HTML(paste0("You just clicked row ", as.numeric(input$DTClick[1]))),
-            uiOutput("modalContent")),
+        title = paste0("You just clicked row ", as.numeric(input$DTClick[1])),
+        dataTableOutput("modalContent"),
+        size = "l",
         easyClose = TRUE,
         footer = NULL
       ))
